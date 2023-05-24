@@ -1,8 +1,9 @@
-// Function to fetch the JSON data
+
 function fetchTweets() {
-  fetch("tweets.json")
+  fetch("http://localhost:8080/") 
     .then(response => response.json())
-    .then(data => renderTweets(data.tweets))
+    .then(data => renderTweets(data))
+
     .catch(error => console.error("Error fetching tweets:", error));
 }
 
@@ -19,81 +20,55 @@ function renderTweets(tweets) {
     var tweetElement = document.createElement("div");
     tweetElement.classList.add("tweet");
 
-    // Create author element
-    var authorElement = document.createElement("div");
-    authorElement.classList.add("author");
 
     // Create profile image element
-    var profileImageElement = document.createElement("img");
-    profileImageElement.src = tweet.author.profileImage;
-    profileImageElement.alt = tweet.author.name;
-    authorElement.appendChild(profileImageElement);
+    var profileimageElement = document.createElement("img");
+    profileimageElement.src = tweet.profileimage;
+    profileimageElement.alt = tweet.username;
+    tweetElement.appendChild(profileimageElement);
 
-    // Create author details element
-    var authorDetailsElement = document.createElement("div");
-    authorDetailsElement.classList.add("author-details");
-
-    // Create author name element
-    var authorNameElement = document.createElement("span");
-    authorNameElement.classList.add("author-name");
-    authorNameElement.textContent = tweet.author.name;
-    authorDetailsElement.appendChild(authorNameElement);
-
-    // Create author username element
-    var authorUsernameElement = document.createElement("span");
-    authorUsernameElement.classList.add("author-username");
-    authorUsernameElement.textContent = "@" + tweet.author.username;
-    authorDetailsElement.appendChild(authorUsernameElement);
-
-    // Append author details element to author element
-    authorElement.appendChild(authorDetailsElement);
+    // Create username element
+    var usernameElement = document.createElement("div");
+    usernameElement.classList.add("username");
+    usernameElement.textContent = "@" + tweet.username;
+    tweetElement.appendChild(usernameElement);
 
     // Create timestamp element
-    var timestampElement = document.createElement("div");
-    timestampElement.classList.add("timestamp");
+    var tweettimeElement = document.createElement("div");
+    tweettimeElement.classList.add("tweettime");
+    tweettimeElement.textContent = tweet.tweettime;
+    tweetElement.appendChild(tweettimeElement);
 
-    // Convert timestamp string to Date object
-    var timestamp = new Date(tweet.timestamp);
+    var formattedTimestamp = formatTimestamp(tweet.tweettime);
+    tweettimeElement.textContent = formattedTimestamp;
 
-    // Format the timestamp
-    var formattedTimestamp = formatDate(timestamp);
-
-    // Set the formatted timestamp as the text content
-    timestampElement.textContent = formattedTimestamp;
+    tweetElement.appendChild(tweettimeElement);
 
     // Create content element
     var contentElement = document.createElement("div");
     contentElement.classList.add("content");
     contentElement.textContent = tweet.content;
-
-    // Create actions element
-    var actionsElement = document.createElement("div");
-    actionsElement.classList.add("actions");
-
-    // Create retweets element
-    var retweetsElement = document.createElement("span");
-    retweetsElement.textContent = "Retweets: " + tweet.retweets;
+    tweetElement.appendChild(contentElement);
 
     // Create likes element
-    var likesElement = document.createElement("span");
+    var likesElement = document.createElement("div");
+    likesElement.classList.add("likes");
     likesElement.textContent = "Likes: " + tweet.likes;
+    tweetElement.appendChild(likesElement);
 
-    // Append all elements to the tweet container
-    actionsElement.appendChild(retweetsElement);
-    actionsElement.appendChild(likesElement);
-    tweetElement.appendChild(authorElement);
-    tweetElement.appendChild(timestampElement);
-    tweetElement.appendChild(contentElement);
-    tweetElement.appendChild(actionsElement);
+    // Create retweets element
+    var retweetsElement = document.createElement("div");
+    retweetsElement.classList.add("retweets");
+    retweetsElement.textContent = "Retweets: " + tweet.retweets;
+    tweetElement.appendChild(retweetsElement);
+
+    // Append tweet element to tweets container
     tweetsContainer.appendChild(tweetElement);
   });
 }
-
-// Function to format the timestamp
-function formatDate(timestamp) {
-  var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
-  return timestamp.toLocaleString(undefined, options);
+function formatTimestamp(timestamp) {
+  var date = new Date(timestamp);
+  var options = { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric" };
+  return date.toLocaleDateString("en-US", options);
 }
 
-// Call the fetchTweets function to load and render the tweets
-fetchTweets();
