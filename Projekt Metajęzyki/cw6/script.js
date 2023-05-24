@@ -1,7 +1,9 @@
+
 function fetchTweets() {
   fetch("http://localhost:8080/") 
     .then(response => response.json())
     .then(data => renderTweets(data))
+
     .catch(error => console.error("Error fetching tweets:", error));
 }
 
@@ -17,6 +19,7 @@ function renderTweets(tweets) {
     // Create tweet element
     var tweetElement = document.createElement("div");
     tweetElement.classList.add("tweet");
+
 
     // Create profile image element
     var profileimageElement = document.createElement("img");
@@ -40,7 +43,6 @@ function renderTweets(tweets) {
     tweettimeElement.textContent = formattedTimestamp;
 
     tweetElement.appendChild(tweettimeElement);
-
 
     // Create content element
     var contentElement = document.createElement("div");
@@ -69,3 +71,4 @@ function formatTimestamp(timestamp) {
   var options = { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric" };
   return date.toLocaleDateString("en-US", options);
 }
+
