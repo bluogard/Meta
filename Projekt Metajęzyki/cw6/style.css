@@ -1,0 +1,47 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #000;
+  color: #fff;
+}
+header {
+  text-align: center;
+}
+.tweet {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.tweet img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.tweet .username {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.tweet .tweettime {
+  color: #777;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.tweet .content {
+  margin-bottom: 10px;
+}
+
+.tweet .likes,
+.tweet .retweets {
+  font-size: 12px;
+  color: #777;
