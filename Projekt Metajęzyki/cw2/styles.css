@@ -1,0 +1,64 @@
+div.table{
+border:1px solid black;
+width: 120px;
+}
+a:hover {
+  background-color: yellow;
+}
+.button{
+padding: 8px 15px;
+  font-size: 10px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: red;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px #999;
+
+}
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+a:visited {
+  color: pink;
+}
+a:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+div.titleA{
+font-family: arial;
+font-size:115%;
+}
+div.authorA{
+font-family: arial;
+}
+div.authorB{
+font-family: papyrus;
+}
+div.authorC{
+font-family: garamond;
+
+}
+div.textA {
+  text-align: left;
+font-family: verdana;
+background-color: Teal;
+}
+div.textB {
+  text-align: right;
+ color: red;
+background-color: gold;
+font-size: 120%;
+}
+div.textC {
+text-align: left;
+background-color: red;
+  color: gold;
+font-size: 80%;
+}
